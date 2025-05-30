@@ -1,4 +1,4 @@
-﻿namespace DiscountDemo.Presentation.Controllers;
+﻿namespace DiscountDemo.Presentation.Models;
 
 public class DiscountResponseDto
 {

@@ -4,5 +4,5 @@ namespace DiscountDemo.Port.DataAccess;
 
 public interface ICustomerRepository
 {
-    Customer GetCustomer(Guid customerId);
+    Task<Customer> GetCustomer(Guid customerId);
 }

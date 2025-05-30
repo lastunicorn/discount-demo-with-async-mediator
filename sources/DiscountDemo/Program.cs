@@ -1,6 +1,6 @@
 using AsyncMediator.Extensions.DependencyInjection;
 using DiscountDemo.Adapter.DataAccess;
-using DiscountDemo.Application.Discount;
+using DiscountDemo.Application.CalculateDiscount;
 using DiscountDemo.Port.DataAccess;
 using DiscountDemo.Presentation.Controllers;
 using System.Reflection;
@@ -14,19 +14,7 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
-
-        builder.Services.AddControllers();
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-        builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen();
-
-        Assembly presentationAssembly = typeof(DiscountController).Assembly;
-        builder.Services.AddMvc().AddApplicationPart(presentationAssembly).AddControllersAsServices();
-
-        Assembly useCaseAssembly = typeof(DiscountCriteria).Assembly;
-        builder.Services.AddAsyncMediator(useCaseAssembly);
-
-        builder.Services.AddSingleton<ICustomerRepository, CustomerRepository>();
+        ConfigureServices(builder.Services);
 
         var app = builder.Build();
 
@@ -45,5 +33,21 @@ public class Program
         app.MapControllers();
 
         app.Run();
+    }
+
+    private static void ConfigureServices(IServiceCollection services)
+    {
+        services.AddControllers();
+        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+        services.AddEndpointsApiExplorer();
+        services.AddSwaggerGen();
+
+        Assembly presentationAssembly = typeof(DiscountController).Assembly;
+        services.AddMvc().AddApplicationPart(presentationAssembly).AddControllersAsServices();
+
+        Assembly useCaseAssembly = typeof(CalculateDiscountCriteria).Assembly;
+        services.AddAsyncMediator(useCaseAssembly);
+
+        services.AddSingleton<ICustomerRepository, CustomerRepository>();
     }
 }

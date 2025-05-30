@@ -1,6 +1,4 @@
-﻿using DiscountDemo.Domain;
-
-namespace DiscountDemo.Application;
+﻿namespace DiscountDemo.Domain;
 
 [Serializable]
 internal class InvalidCustomerTypeException : Exception

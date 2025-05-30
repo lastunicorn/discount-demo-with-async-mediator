@@ -1,5 +1,6 @@
 ﻿using AsyncMediator;
-using DiscountDemo.Application.Discount;
+using DiscountDemo.Application.CalculateDiscount;
+using DiscountDemo.Presentation.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DiscountDemo.Presentation.Controllers;
@@ -18,12 +19,12 @@ public class DiscountController : ControllerBase
     [HttpGet]
     public async Task<DiscountResponseDto> Get(DiscountRequestDto discountRequestDto)
     {
-        DiscountCriteria request = new()
+        CalculateDiscountCriteria request = new()
         {
             CustomerId = discountRequestDto.CustomerId,
             PurchaseAmount = discountRequestDto.PurchaseAmount
         };
-        DiscountResponse response = await mediator.Query<DiscountCriteria, DiscountResponse>(request);
+        CalculateDiscountResponse response = await mediator.Query<CalculateDiscountCriteria, CalculateDiscountResponse>(request);
 
         return new DiscountResponseDto
         {

@@ -1,15 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36109.1 d17.14
+VisualStudioVersion = 17.14.36109.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscountDemo", "DiscountDemo\DiscountDemo.csproj", "{90CD2927-CF74-442E-B5DC-DD8B6CDB0C1C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscountDemo.Application", "DiscountDemo.Application\DiscountDemo.Application.csproj", "{C81D8134-D27A-4E60-8261-DC575AA08F9D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscountDemo.Domain", "DiscountDemo.Domain\DiscountDemo.Domain.csproj", "{BAE1CB0D-2B6B-4600-AB12-C4F0BB8AAFA1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncMediator.Extensions.DependencyInjection", "AsyncMediator.Extensions.DependencyInjection\AsyncMediator.Extensions.DependencyInjection.csproj", "{E1DEC056-F135-45AA-A517-FAECA62736E5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscountDemo.Port.DataAccess", "DiscountDemo.Port.DataAccess\DiscountDemo.Port.DataAccess.csproj", "{4FB5CE8A-B0DD-475A-A3FF-523D06FD816A}"
 EndProject
@@ -39,10 +37,6 @@ Global
 		{BAE1CB0D-2B6B-4600-AB12-C4F0BB8AAFA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BAE1CB0D-2B6B-4600-AB12-C4F0BB8AAFA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BAE1CB0D-2B6B-4600-AB12-C4F0BB8AAFA1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E1DEC056-F135-45AA-A517-FAECA62736E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E1DEC056-F135-45AA-A517-FAECA62736E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E1DEC056-F135-45AA-A517-FAECA62736E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E1DEC056-F135-45AA-A517-FAECA62736E5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4FB5CE8A-B0DD-475A-A3FF-523D06FD816A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4FB5CE8A-B0DD-475A-A3FF-523D06FD816A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4FB5CE8A-B0DD-475A-A3FF-523D06FD816A}.Release|Any CPU.ActiveCfg = Release|Any CPU

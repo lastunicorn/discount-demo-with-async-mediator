@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace DiscountDemo.Presentation.Controllers;
+namespace DiscountDemo.Presentation.Models;
 
 public class DiscountRequestDto
 {

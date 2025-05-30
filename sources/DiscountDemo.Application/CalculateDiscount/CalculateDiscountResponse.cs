@@ -1,6 +1,6 @@
-﻿namespace DiscountDemo.Application.Discount;
+﻿namespace DiscountDemo.Application.CalculateDiscount;
 
-public class DiscountResponse
+public class CalculateDiscountResponse
 {
     public float DiscountPercentage { get; set; }
 
