@@ -9,18 +9,18 @@
         <PackageReference Include="AsyncMediator" Version="2.1.0" />
         <PackageReference Include="AsyncMediator.Extensions.DependencyInjection" Version="1.0.0" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.5">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DiscountDemo.Adapter.EfDataAccess\DiscountDemo.Adapter.EfDataAccess.csproj" />
-      <ProjectReference Include="..\DiscountDemo.Adapter.InMemoryDataAccess\DiscountDemo.Adapter.InMemoryDataAccess.csproj" />
-      <ProjectReference Include="..\DiscountDemo.Application\DiscountDemo.Application.csproj" />
-      <ProjectReference Include="..\DiscountDemo.Port.DataAccess\DiscountDemo.Port.DataAccess.csproj" />
-      <ProjectReference Include="..\DiscountDemo.Presentation\DiscountDemo.Presentation.csproj" />
+        <ProjectReference Include="..\DiscountDemo.Adapter.EfDataAccess\DiscountDemo.Adapter.EfDataAccess.csproj" />
+        <ProjectReference Include="..\DiscountDemo.Adapter.InMemoryDataAccess\DiscountDemo.Adapter.InMemoryDataAccess.csproj" />
+        <ProjectReference Include="..\DiscountDemo.Application\DiscountDemo.Application.csproj" />
+        <ProjectReference Include="..\DiscountDemo.Port.DataAccess\DiscountDemo.Port.DataAccess.csproj" />
+        <ProjectReference Include="..\DiscountDemo.Presentation\DiscountDemo.Presentation.csproj" />
     </ItemGroup>
 
 </Project>
