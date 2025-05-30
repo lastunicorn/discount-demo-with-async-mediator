@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ports", "Ports", "{02EA681E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Adapters", "Adapters", "{DC8FE63E-48C8-4917-BF65-96A4B5A6DBBF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscountDemo.Adapter.EfDataAccess", "DiscountDemo.Adapter.EfDataAccess\DiscountDemo.Adapter.EfDataAccess.csproj", "{71D462AD-E7AC-49F3-A702-30B3B106FBA2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{5CAA6993-3CDD-4248-B058-DA9EAEFDA81D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CAA6993-3CDD-4248-B058-DA9EAEFDA81D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CAA6993-3CDD-4248-B058-DA9EAEFDA81D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71D462AD-E7AC-49F3-A702-30B3B106FBA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71D462AD-E7AC-49F3-A702-30B3B106FBA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71D462AD-E7AC-49F3-A702-30B3B106FBA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71D462AD-E7AC-49F3-A702-30B3B106FBA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,6 +62,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{4FB5CE8A-B0DD-475A-A3FF-523D06FD816A} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{5CAA6993-3CDD-4248-B058-DA9EAEFDA81D} = {DC8FE63E-48C8-4917-BF65-96A4B5A6DBBF}
+		{71D462AD-E7AC-49F3-A702-30B3B106FBA2} = {DC8FE63E-48C8-4917-BF65-96A4B5A6DBBF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {60DCB312-90FD-4385-ACED-F73C9A7D1E7A}

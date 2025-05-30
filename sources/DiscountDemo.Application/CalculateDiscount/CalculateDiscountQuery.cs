@@ -16,6 +16,10 @@ internal class CalculateDiscountQuery : IQuery<CalculateDiscountCriteria, Calcul
     public async Task<CalculateDiscountResponse> Query(CalculateDiscountCriteria discountRequest)
     {
         Customer customer = await customerRepository.GetCustomer(discountRequest.CustomerId);
+
+        if (customer == null)
+            throw new CustomerDoesNotExistException(discountRequest.CustomerId);
+
         Discount discount = CalculateDiscount(discountRequest, customer);
 
         return new CalculateDiscountResponse

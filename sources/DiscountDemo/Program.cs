@@ -1,9 +1,11 @@
 using AsyncMediator.Extensions.DependencyInjection;
-using DiscountDemo.Adapter.DataAccess;
+using DiscountDemo.Adapter.EfDataAccess;
 using DiscountDemo.Application.CalculateDiscount;
 using DiscountDemo.Port.DataAccess;
 using DiscountDemo.Presentation.Controllers;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using CustomerRepository = DiscountDemo.Adapter.EfDataAccess.CustomerRepository;
 
 namespace DiscountDemo;
 
@@ -14,7 +16,27 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
-        ConfigureServices(builder.Services);
+
+        // Configure EF Core
+        builder.Services.AddDbContext<DiscountDemoDbContext>(options =>
+        {
+            string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+            options.UseSqlServer(connectionString);
+        });
+
+        builder.Services.AddControllers();
+        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
+
+        Assembly presentationAssembly = typeof(DiscountController).Assembly;
+        builder.Services.AddMvc().AddApplicationPart(presentationAssembly).AddControllersAsServices();
+
+        Assembly useCaseAssembly = typeof(CalculateDiscountCriteria).Assembly;
+        builder.Services.AddAsyncMediator(useCaseAssembly);
+
+        builder.Services.AddTransient<DbContext>();
+        builder.Services.AddTransient<ICustomerRepository, CustomerRepository>();
 
         var app = builder.Build();
 
@@ -33,21 +55,5 @@ public class Program
         app.MapControllers();
 
         app.Run();
-    }
-
-    private static void ConfigureServices(IServiceCollection services)
-    {
-        services.AddControllers();
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-        services.AddEndpointsApiExplorer();
-        services.AddSwaggerGen();
-
-        Assembly presentationAssembly = typeof(DiscountController).Assembly;
-        services.AddMvc().AddApplicationPart(presentationAssembly).AddControllersAsServices();
-
-        Assembly useCaseAssembly = typeof(CalculateDiscountCriteria).Assembly;
-        services.AddAsyncMediator(useCaseAssembly);
-
-        services.AddSingleton<ICustomerRepository, CustomerRepository>();
     }
 }

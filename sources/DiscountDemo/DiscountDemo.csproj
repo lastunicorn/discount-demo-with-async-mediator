@@ -12,7 +12,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DiscountDemo.Adapter.DataAccess\DiscountDemo.Adapter.InMemoryDataAccess.csproj" />
+      <ProjectReference Include="..\DiscountDemo.Adapter.EfDataAccess\DiscountDemo.Adapter.EfDataAccess.csproj" />
+      <ProjectReference Include="..\DiscountDemo.Adapter.InMemoryDataAccess\DiscountDemo.Adapter.InMemoryDataAccess.csproj" />
       <ProjectReference Include="..\DiscountDemo.Application\DiscountDemo.Application.csproj" />
       <ProjectReference Include="..\DiscountDemo.Port.DataAccess\DiscountDemo.Port.DataAccess.csproj" />
       <ProjectReference Include="..\DiscountDemo.Presentation\DiscountDemo.Presentation.csproj" />

@@ -1,5 +1,8 @@
-﻿namespace DiscountDemo.Domain;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
+namespace DiscountDemo.Domain;
+
+[Table("Customers")]
 public class Customer
 {
     public Guid Id { get; set; }

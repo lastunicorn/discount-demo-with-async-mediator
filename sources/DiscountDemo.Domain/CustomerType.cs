@@ -2,7 +2,7 @@
 
 public enum CustomerType
 {
-    Regular,
-    Premium,
-    Vip
+    Regular = 1,
+    Premium = 2,
+    Vip = 3
 }
