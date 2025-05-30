@@ -1,7 +1,7 @@
 ﻿using DiscountDemo.Domain;
 using DiscountDemo.Port.DataAccess;
 
-namespace DiscountDemo.Adapter.DataAccess;
+namespace DiscountDemo.Adapter.InMemoryDataAccess;
 
 public class CustomerRepository : ICustomerRepository
 {

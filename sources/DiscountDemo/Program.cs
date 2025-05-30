@@ -35,7 +35,6 @@ public class Program
         Assembly useCaseAssembly = typeof(CalculateDiscountCriteria).Assembly;
         builder.Services.AddAsyncMediator(useCaseAssembly);
 
-        builder.Services.AddTransient<DbContext>();
         builder.Services.AddTransient<ICustomerRepository, CustomerRepository>();
 
         var app = builder.Build();

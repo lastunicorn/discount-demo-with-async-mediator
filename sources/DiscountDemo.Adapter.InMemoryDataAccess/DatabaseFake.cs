@@ -1,6 +1,6 @@
 ﻿using DiscountDemo.Domain;
 
-namespace DiscountDemo.Adapter.DataAccess;
+namespace DiscountDemo.Adapter.InMemoryDataAccess;
 
 internal static class DatabaseFake
 {
