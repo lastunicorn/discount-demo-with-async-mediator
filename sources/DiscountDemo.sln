@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscountDemo.Port.DataAcces
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscountDemo.Presentation", "DiscountDemo.Presentation\DiscountDemo.Presentation.csproj", "{26F65529-1FD7-4E17-B49F-A8C55ED024C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscountDemo.Adapter.DataAccess", "DiscountDemo.Adapter.DataAccess\DiscountDemo.Adapter.DataAccess.csproj", "{5CAA6993-3CDD-4248-B058-DA9EAEFDA81D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscountDemo.Adapter.InMemoryDataAccess", "DiscountDemo.Adapter.InMemoryDataAccess\DiscountDemo.Adapter.InMemoryDataAccess.csproj", "{5CAA6993-3CDD-4248-B058-DA9EAEFDA81D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ports", "Ports", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
