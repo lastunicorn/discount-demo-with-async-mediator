@@ -15,6 +15,7 @@ public class DiscountDemoDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new CustomerConfiguration());
+        modelBuilder.SeedCustomer();
 
         base.OnModelCreating(modelBuilder);
     }

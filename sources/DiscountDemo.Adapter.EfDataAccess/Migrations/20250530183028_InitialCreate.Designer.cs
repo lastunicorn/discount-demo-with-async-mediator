@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DiscountDemo.Adapter.EfDataAccess.Migrations
 {
     [DbContext(typeof(DiscountDemoDbContext))]
-    [Migration("20250530170001_InitialCreate")]
+    [Migration("20250530183028_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -42,6 +42,32 @@ namespace DiscountDemo.Adapter.EfDataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Customers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("2fd3575d-e43e-49b1-b05b-16aa2947d1ea"),
+                            Name = "John Doe",
+                            Type = 1
+                        },
+                        new
+                        {
+                            Id = new Guid("a643cefd-60ff-44a3-b567-de7235525257"),
+                            Name = "John Doe",
+                            Type = 2
+                        },
+                        new
+                        {
+                            Id = new Guid("9625e3f2-31fa-4d3a-81ab-48456372e943"),
+                            Name = "John Doe",
+                            Type = 3
+                        },
+                        new
+                        {
+                            Id = new Guid("3c2963ab-0424-4e3d-8aef-ab0c813a08cc"),
+                            Name = "John Doe",
+                            Type = 4
+                        });
                 });
 #pragma warning restore 612, 618
         }
