@@ -8,36 +8,39 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace DiscountDemo.Adapter.EfDataAccess.Migrations;
-
-[DbContext(typeof(DiscountDemoDbContext))]
-partial class DiscountDemoDbContextModelSnapshot : ModelSnapshot
+namespace DiscountDemo.Adapter.EfDataAccess.Migrations
 {
-    protected override void BuildModel(ModelBuilder modelBuilder)
+    [DbContext(typeof(DiscountDemoDbContext))]
+    partial class DiscountDemoDbContextModelSnapshot : ModelSnapshot
     {
-#pragma warning disable 612, 618
-        modelBuilder
-            .HasAnnotation("ProductVersion", "9.0.5")
-            .HasAnnotation("Relational:MaxIdentifierLength", 128);
-
-        SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-        modelBuilder.Entity("DiscountDemo.Domain.Customer", b =>
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
-            b.Property<Guid>("Id")
-                .ValueGeneratedOnAdd()
-                .HasColumnType("uniqueidentifier");
+#pragma warning disable 612, 618
+            modelBuilder
+                .HasAnnotation("ProductVersion", "9.0.5")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            b.Property<string>("Name")
-                .HasColumnType("nvarchar(max)");
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            b.Property<int>("Type")
-                .HasColumnType("int");
+            modelBuilder.Entity("DiscountDemo.Domain.Customer", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
-            b.HasKey("Id");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
-            b.ToTable("Customers");
-        });
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Customers", (string)null);
+                });
 #pragma warning restore 612, 618
+        }
     }
 }

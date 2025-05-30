@@ -1,6 +1,7 @@
 ﻿using DiscountDemo.Domain;
 using AsyncMediator;
 using DiscountDemo.Port.DataAccess;
+using DiscountDemo.Application.Errors;
 
 namespace DiscountDemo.Application.CalculateDiscount;
 
@@ -13,14 +14,17 @@ internal class CalculateDiscountQuery : IQuery<CalculateDiscountCriteria, Calcul
         this.customerRepository = customerRepository;
     }
 
-    public async Task<CalculateDiscountResponse> Query(CalculateDiscountCriteria discountRequest)
+    public async Task<CalculateDiscountResponse> Query(CalculateDiscountCriteria calculateDiscountCriteria)
     {
-        Customer customer = await customerRepository.GetCustomer(discountRequest.CustomerId);
+        if (calculateDiscountCriteria.PurchaseAmount < 0)
+            throw new InvalidPriceException(calculateDiscountCriteria.PurchaseAmount);
+
+        Customer customer = await customerRepository.GetCustomer(calculateDiscountCriteria.CustomerId);
 
         if (customer == null)
-            throw new CustomerDoesNotExistException(discountRequest.CustomerId);
+            throw new CustomerDoesNotExistException(calculateDiscountCriteria.CustomerId);
 
-        Discount discount = CalculateDiscount(discountRequest, customer);
+        Discount discount = CalculateDiscount(calculateDiscountCriteria, customer);
 
         return new CalculateDiscountResponse
         {

@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Adapters", "Adapters", "{DC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscountDemo.Adapter.EfDataAccess", "DiscountDemo.Adapter.EfDataAccess\DiscountDemo.Adapter.EfDataAccess.csproj", "{71D462AD-E7AC-49F3-A702-30B3B106FBA2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscountDemo.Presentation.Infrastructure", "DiscountDemo.Presentation.Infrastructure\DiscountDemo.Presentation.Infrastructure.csproj", "{0030EF54-1302-494B-9C90-DC542B543E01}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{71D462AD-E7AC-49F3-A702-30B3B106FBA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71D462AD-E7AC-49F3-A702-30B3B106FBA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71D462AD-E7AC-49F3-A702-30B3B106FBA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0030EF54-1302-494B-9C90-DC542B543E01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0030EF54-1302-494B-9C90-DC542B543E01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0030EF54-1302-494B-9C90-DC542B543E01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0030EF54-1302-494B-9C90-DC542B543E01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

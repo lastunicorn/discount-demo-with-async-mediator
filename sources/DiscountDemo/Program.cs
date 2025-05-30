@@ -3,6 +3,7 @@ using DiscountDemo.Adapter.EfDataAccess;
 using DiscountDemo.Application.CalculateDiscount;
 using DiscountDemo.Port.DataAccess;
 using DiscountDemo.Presentation.Controllers;
+using DiscountDemo.Presentation.ErrorHandling;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using CustomerRepository = DiscountDemo.Adapter.EfDataAccess.CustomerRepository;
@@ -37,7 +38,11 @@ public class Program
 
         builder.Services.AddTransient<ICustomerRepository, CustomerRepository>();
 
+        builder.Services.AddExceptionHandlers(presentationAssembly);
+
         var app = builder.Build();
+
+        app.UseExceptionHandlers();
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())

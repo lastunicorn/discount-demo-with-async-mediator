@@ -11,4 +11,11 @@ public class DiscountDemoDbContext : DbContext
         : base(options)
     {
     }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfiguration(new CustomerConfiguration());
+
+        base.OnModelCreating(modelBuilder);
+    }
 }
