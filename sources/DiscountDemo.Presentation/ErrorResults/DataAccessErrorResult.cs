@@ -2,15 +2,15 @@
 using DiscountDemo.Presentation.Infrastructure.ErrorHandling.Json;
 using Microsoft.AspNetCore.Http;
 
-namespace DiscountDemo.Presentation.ErrorHandlers;
+namespace DiscountDemo.Presentation.ErrorResults;
 
-internal class DataAccessExceptionHandler : JsonResponseExceptionHandler<DataAccessException>
+internal class DataAccessErrorResult : JsonErrorResult<DataAccessException>
 {
     protected override int StatusCode => StatusCodes.Status503ServiceUnavailable;
 
-    protected override ErrorResponseDto BuildResponseBody(DataAccessException exception)
+    protected override ErrorBodyDto BuildBody(DataAccessException exception)
     {
-        return new ErrorResponseDto
+        return new ErrorBodyDto
         {
             ErrorCode = exception.ErrorCode,
             Message = exception.Message

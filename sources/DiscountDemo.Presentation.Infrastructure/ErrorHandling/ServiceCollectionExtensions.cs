@@ -1,19 +1,13 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
 namespace DiscountDemo.Presentation.Infrastructure.ErrorHandling;
 
-public static class ExceptionHandlerSetup
+public static class ServiceCollectionExtensions
 {
-    public static IApplicationBuilder UseExceptionHandlers(this IApplicationBuilder app)
-    {
-        return app.UseMiddleware<ExceptionHandlingMiddleware>();
-    }
-
     public static IServiceCollection AddExceptionHandlers(this IServiceCollection serviceCollection, params Assembly[] assemblies)
     {
-        ExceptionHandlers handler = new();
+        ExceptionHandler handler = new();
 
         foreach (Assembly assembly in assemblies)
             handler.AddExceptionHandlers(assembly);
@@ -24,16 +18,16 @@ public static class ExceptionHandlerSetup
 
     public static IServiceCollection AddExceptionHandlers(this IServiceCollection serviceCollection, Assembly assembly)
     {
-        ExceptionHandlers handler = new();
+        ExceptionHandler handler = new();
         handler.AddExceptionHandlers(assembly);
 
         serviceCollection.AddSingleton(handler);
         return serviceCollection;
     }
 
-    private static void AddExceptionHandlers(this ExceptionHandlers handler, Assembly assembly)
+    private static void AddExceptionHandlers(this ExceptionHandler handler, Assembly assembly)
     {
-        Type handlerInterfaceType = typeof(IExceptionHandler<>);
+        Type handlerInterfaceType = typeof(IErrorResult<>);
 
         foreach (Type type in assembly.GetTypes())
         {

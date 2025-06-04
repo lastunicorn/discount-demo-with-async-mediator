@@ -2,15 +2,15 @@
 using DiscountDemo.Presentation.Infrastructure.ErrorHandling.Json;
 using Microsoft.AspNetCore.Http;
 
-namespace DiscountDemo.Presentation.ErrorHandlers;
+namespace DiscountDemo.Presentation.ErrorResults;
 
-internal class CustomerDoesNotExistExceptionHandler : JsonResponseExceptionHandler<CustomerDoesNotExistException>
+internal class InvalidPriceErrorResult : JsonErrorResult<InvalidPriceException>
 {
     protected override int StatusCode => StatusCodes.Status400BadRequest;
 
-    protected override ErrorResponseDto BuildResponseBody(CustomerDoesNotExistException exception)
+    protected override ErrorBodyDto BuildBody(InvalidPriceException exception)
     {
-        return new ErrorResponseDto
+        return new ErrorBodyDto
         {
             ErrorCode = exception.ErrorCode,
             Message = exception.Message

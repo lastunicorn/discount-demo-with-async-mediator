@@ -2,15 +2,15 @@
 using DiscountDemo.Presentation.Infrastructure.ErrorHandling.Json;
 using Microsoft.AspNetCore.Http;
 
-namespace DiscountDemo.Presentation.ErrorHandlers;
+namespace DiscountDemo.Presentation.ErrorResults;
 
-internal class DiscountDemoExceptionHandler : JsonResponseExceptionHandler<DiscountDemoException>
+internal class DiscountDemoErrorResult : JsonErrorResult<DiscountDemoException>
 {
     protected override int StatusCode => StatusCodes.Status500InternalServerError;
 
-    protected override ErrorResponseDto BuildResponseBody(DiscountDemoException exception)
+    protected override ErrorBodyDto BuildBody(DiscountDemoException exception)
     {
-        return new ErrorResponseDto
+        return new ErrorBodyDto
         {
             ErrorCode = exception.ErrorCode,
             Message = exception.Message

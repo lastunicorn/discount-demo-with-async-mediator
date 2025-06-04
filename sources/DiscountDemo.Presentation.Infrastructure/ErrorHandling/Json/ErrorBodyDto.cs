@@ -1,6 +1,6 @@
 ﻿namespace DiscountDemo.Presentation.Infrastructure.ErrorHandling.Json;
 
-public class ErrorResponseDto
+public class ErrorBodyDto
 {
     public int ErrorCode { get; init; }
 

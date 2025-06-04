@@ -2,8 +2,8 @@
 
 namespace DiscountDemo.Presentation.Infrastructure.ErrorHandling;
 
-public interface IExceptionHandler<in T>
+public interface IErrorResult<in T>
     where T : Exception
 {
-    Task Handle(HttpContext context, T ex);
+    Task ExecuteAsync(HttpContext context, T ex);
 }
