@@ -1,19 +1,19 @@
 ﻿using DiscountDemo.Application.Errors;
-using DiscountDemo.Presentation.ErrorHandling;
+using DiscountDemo.Presentation.Infrastructure.ErrorHandling.Json;
 using Microsoft.AspNetCore.Http;
-using System.Text.Json;
 
 namespace DiscountDemo.Presentation.ErrorHandlers;
 
-internal class InvalidPriceExceptionHandler : IExceptionHandler<InvalidPriceException>
+internal class InvalidPriceExceptionHandler : JsonResponseExceptionHandler<InvalidPriceException>
 {
-    public Task Handle(HttpContext context, InvalidPriceException ex)
+    protected override int StatusCode => StatusCodes.Status400BadRequest;
+
+    protected override ErrorResponseDto BuildResponseBody(InvalidPriceException exception)
     {
-        context.Response.ContentType = "application/json";
-        context.Response.StatusCode = StatusCodes.Status400BadRequest;
-
-        ErrorResponseDto response = ex.ToResponseDto();
-
-        return context.Response.WriteAsync(JsonSerializer.Serialize(response));
+        return new ErrorResponseDto
+        {
+            ErrorCode = exception.ErrorCode,
+            Message = exception.Message
+        };
     }
 }

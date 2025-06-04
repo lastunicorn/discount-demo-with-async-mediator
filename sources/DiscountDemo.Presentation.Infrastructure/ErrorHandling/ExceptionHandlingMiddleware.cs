@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace DiscountDemo.Presentation.ErrorHandling;
+namespace DiscountDemo.Presentation.Infrastructure.ErrorHandling;
 
-public class ExceptionHandlingMiddleware
+internal class ExceptionHandlingMiddleware
 {
     private readonly RequestDelegate next;
-    private readonly ExceptionHandler exceptionHandler;
+    private readonly ExceptionHandlers exceptionHandler;
 
-    public ExceptionHandlingMiddleware(RequestDelegate next, ExceptionHandler exceptionHandler)
+    public ExceptionHandlingMiddleware(RequestDelegate next, ExceptionHandlers exceptionHandler)
     {
         this.next = next ?? throw new ArgumentNullException(nameof(next));
         this.exceptionHandler = exceptionHandler ?? throw new ArgumentNullException(nameof(exceptionHandler));

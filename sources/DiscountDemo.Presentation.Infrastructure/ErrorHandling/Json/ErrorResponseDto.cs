@@ -1,4 +1,4 @@
-﻿namespace DiscountDemo.Presentation.ErrorHandling;
+﻿namespace DiscountDemo.Presentation.Infrastructure.ErrorHandling.Json;
 
 public class ErrorResponseDto
 {

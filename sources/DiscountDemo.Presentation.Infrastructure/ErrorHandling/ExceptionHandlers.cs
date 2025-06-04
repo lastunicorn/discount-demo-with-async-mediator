@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using DiscountDemo.Presentation.Infrastructure.ErrorHandling.Json;
+using Microsoft.AspNetCore.Http;
 
-namespace DiscountDemo.Presentation.ErrorHandling;
+namespace DiscountDemo.Presentation.Infrastructure.ErrorHandling;
 
-public class ExceptionHandler
+internal class ExceptionHandlers
 {
     private readonly Dictionary<Type, Type> types = [];
 
@@ -26,7 +27,7 @@ public class ExceptionHandler
                 var method = handlerType.GetMethod("Handle");
                 if (method != null)
                 {
-                    await (Task)method.Invoke(handler, new object[] { context, exception });
+                    await (Task)method.Invoke(handler, [context, exception]);
                 }
             }
         }

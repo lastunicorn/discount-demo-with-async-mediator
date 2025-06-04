@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
-namespace DiscountDemo.Presentation.ErrorHandling;
+namespace DiscountDemo.Presentation.Infrastructure.ErrorHandling;
 
 public static class ExceptionHandlerSetup
 {
@@ -13,7 +13,7 @@ public static class ExceptionHandlerSetup
 
     public static IServiceCollection AddExceptionHandlers(this IServiceCollection serviceCollection, params Assembly[] assemblies)
     {
-        ExceptionHandler handler = new();
+        ExceptionHandlers handler = new();
 
         foreach (Assembly assembly in assemblies)
             handler.AddExceptionHandlers(assembly);
@@ -24,14 +24,14 @@ public static class ExceptionHandlerSetup
 
     public static IServiceCollection AddExceptionHandlers(this IServiceCollection serviceCollection, Assembly assembly)
     {
-        ExceptionHandler handler = new();
+        ExceptionHandlers handler = new();
         handler.AddExceptionHandlers(assembly);
 
         serviceCollection.AddSingleton(handler);
         return serviceCollection;
     }
 
-    private static void AddExceptionHandlers(this ExceptionHandler handler, Assembly assembly)
+    private static void AddExceptionHandlers(this ExceptionHandlers handler, Assembly assembly)
     {
         Type handlerInterfaceType = typeof(IExceptionHandler<>);
 

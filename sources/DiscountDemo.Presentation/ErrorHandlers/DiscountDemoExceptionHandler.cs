@@ -1,19 +1,19 @@
 ﻿using DiscountDemo.Domain;
-using DiscountDemo.Presentation.ErrorHandling;
+using DiscountDemo.Presentation.Infrastructure.ErrorHandling.Json;
 using Microsoft.AspNetCore.Http;
-using System.Text.Json;
 
 namespace DiscountDemo.Presentation.ErrorHandlers;
 
-internal class DiscountDemoExceptionHandler : IExceptionHandler<DiscountDemoException>
+internal class DiscountDemoExceptionHandler : JsonResponseExceptionHandler<DiscountDemoException>
 {
-    public Task Handle(HttpContext context, DiscountDemoException ex)
+    protected override int StatusCode => StatusCodes.Status500InternalServerError;
+
+    protected override ErrorResponseDto BuildResponseBody(DiscountDemoException exception)
     {
-        context.Response.ContentType = "application/json";
-        context.Response.StatusCode = StatusCodes.Status500InternalServerError;
-
-        ErrorResponseDto response = ex.ToResponseDto();
-
-        return context.Response.WriteAsync(JsonSerializer.Serialize(response));
+        return new ErrorResponseDto
+        {
+            ErrorCode = exception.ErrorCode,
+            Message = exception.Message
+        };
     }
 }

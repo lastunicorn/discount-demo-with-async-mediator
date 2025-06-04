@@ -3,7 +3,7 @@ using DiscountDemo.Adapter.EfDataAccess;
 using DiscountDemo.Application.CalculateDiscount;
 using DiscountDemo.Port.DataAccess;
 using DiscountDemo.Presentation.Controllers;
-using DiscountDemo.Presentation.ErrorHandling;
+using DiscountDemo.Presentation.Infrastructure.ErrorHandling;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using CustomerRepository = DiscountDemo.Adapter.EfDataAccess.CustomerRepository;

@@ -1,19 +1,19 @@
 ﻿using DiscountDemo.Domain;
-using DiscountDemo.Presentation.ErrorHandling;
+using DiscountDemo.Presentation.Infrastructure.ErrorHandling.Json;
 using Microsoft.AspNetCore.Http;
-using System.Text.Json;
 
 namespace DiscountDemo.Presentation.ErrorHandlers;
 
-internal class InvalidCustomerTypeExceptionHandler : IExceptionHandler<InvalidCustomerTypeException>
+internal class InvalidCustomerTypeExceptionHandler : JsonResponseExceptionHandler<InvalidCustomerTypeException>
 {
-    public Task Handle(HttpContext context, InvalidCustomerTypeException ex)
+    protected override int StatusCode => StatusCodes.Status422UnprocessableEntity;
+
+    protected override ErrorResponseDto BuildResponseBody(InvalidCustomerTypeException exception)
     {
-        context.Response.ContentType = "application/json";
-        context.Response.StatusCode = StatusCodes.Status422UnprocessableEntity;
-
-        ErrorResponseDto response = ex.ToResponseDto();
-
-        return context.Response.WriteAsync(JsonSerializer.Serialize(response));
+        return new ErrorResponseDto
+        {
+            ErrorCode = exception.ErrorCode,
+            Message = exception.Message
+        };
     }
 }

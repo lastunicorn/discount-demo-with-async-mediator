@@ -1,19 +1,19 @@
 ﻿using DiscountDemo.Port.DataAccess;
-using DiscountDemo.Presentation.ErrorHandling;
+using DiscountDemo.Presentation.Infrastructure.ErrorHandling.Json;
 using Microsoft.AspNetCore.Http;
-using System.Text.Json;
 
 namespace DiscountDemo.Presentation.ErrorHandlers;
 
-internal class DataAccessExceptionHandler : IExceptionHandler<DataAccessException>
+internal class DataAccessExceptionHandler : JsonResponseExceptionHandler<DataAccessException>
 {
-    public Task Handle(HttpContext context, DataAccessException ex)
+    protected override int StatusCode => StatusCodes.Status503ServiceUnavailable;
+
+    protected override ErrorResponseDto BuildResponseBody(DataAccessException exception)
     {
-        context.Response.ContentType = "application/json";
-        context.Response.StatusCode = StatusCodes.Status503ServiceUnavailable;
-
-        ErrorResponseDto response = ex.ToResponseDto();
-
-        return context.Response.WriteAsync(JsonSerializer.Serialize(response));
+        return new ErrorResponseDto
+        {
+            ErrorCode = exception.ErrorCode,
+            Message = exception.Message
+        };
     }
 }
