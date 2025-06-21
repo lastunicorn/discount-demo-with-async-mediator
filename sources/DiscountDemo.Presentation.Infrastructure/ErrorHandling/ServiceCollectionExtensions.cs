@@ -5,29 +5,58 @@ namespace DiscountDemo.Presentation.Infrastructure.ErrorHandling;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddExceptionHandlers(this IServiceCollection serviceCollection, params Assembly[] assemblies)
+    public static IServiceCollection AddErrorResults(this IServiceCollection serviceCollection, Action<ExceptionsHandlerOptions> createOptions)
     {
-        ExceptionHandler handler = new();
+        ExceptionsHandlerOptions options = new();
 
-        foreach (Assembly assembly in assemblies)
-            handler.AddExceptionHandlers(assembly);
+        if (createOptions is not null)
+            createOptions(options);
+
+        ExceptionsHandler handler = new();
+
+        if (options.Assemblies is not null)
+        {
+            IEnumerable<(Type, Type)> errorResults = options.Assemblies
+                .Where(x => x is not null)
+                .SelectMany(EnumerateErrorResults);
+
+            if (errorResults is not null)
+                handler.AddRange(errorResults);
+        }
+
+        if (options.DefaultErrorResult is not null)
+            handler.DefaultErrorHandler = options.DefaultErrorResult;
 
         serviceCollection.AddSingleton(handler);
         return serviceCollection;
     }
 
-    public static IServiceCollection AddExceptionHandlers(this IServiceCollection serviceCollection, Assembly assembly)
+    public static IServiceCollection AddErrorResults(this IServiceCollection serviceCollection, params Assembly[] assemblies)
     {
-        ExceptionHandler handler = new();
-        handler.AddExceptionHandlers(assembly);
+        IEnumerable<(Type, Type)> errorResults = assemblies
+            .SelectMany(EnumerateErrorResults);
+
+        ExceptionsHandler handler = new();
+        handler.AddRange(errorResults);
 
         serviceCollection.AddSingleton(handler);
         return serviceCollection;
     }
 
-    private static void AddExceptionHandlers(this ExceptionHandler handler, Assembly assembly)
+    public static IServiceCollection AddErrorResults(this IServiceCollection serviceCollection, Assembly assembly)
     {
-        Type handlerInterfaceType = typeof(IErrorResult<>);
+        IEnumerable<(Type, Type)> errorResults = assembly.EnumerateErrorResults();
+
+        ExceptionsHandler handler = new();
+        handler.AddRange(errorResults);
+
+        serviceCollection.AddSingleton(handler);
+        return serviceCollection;
+    }
+
+    private static IEnumerable<(Type, Type)> EnumerateErrorResults(this Assembly assembly)
+    {
+        Type handlerInterfaceType = typeof(IHttpErrorResult<>);
 
         foreach (Type type in assembly.GetTypes())
         {
@@ -37,7 +66,7 @@ public static class ServiceCollectionExtensions
             foreach (Type implementedInterface in implementedInterfaces)
             {
                 Type exceptionType = implementedInterface.GetGenericArguments()[0];
-                handler.Add(exceptionType, type);
+                yield return (exceptionType, type);
             }
         }
     }

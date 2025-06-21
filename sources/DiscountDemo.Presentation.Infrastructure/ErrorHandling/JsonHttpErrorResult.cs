@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.Text.Json;
 
-namespace DiscountDemo.Presentation.Infrastructure.ErrorHandling.Json;
+namespace DiscountDemo.Presentation.Infrastructure.ErrorHandling;
 
-public abstract class JsonErrorResult<TException, TResponseBody> : IErrorResult<TException>
+public abstract class JsonHttpErrorResult<TException, TResponseBody> : IHttpErrorResult<TException>
     where TException : Exception
 {
     protected abstract int StatusCode { get; }

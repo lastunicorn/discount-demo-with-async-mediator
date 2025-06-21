@@ -4,30 +4,30 @@ internal class ErrorResultTypeCollection
 {
     private readonly Dictionary<Type, Type> types = [];
 
-    public void Add(Type exceptionType, Type errorResponseType)
+    public void Add(Type exceptionType, Type errorResultType)
     {
         ArgumentNullException.ThrowIfNull(exceptionType);
-        ArgumentNullException.ThrowIfNull(errorResponseType);
+        ArgumentNullException.ThrowIfNull(errorResultType);
 
         if (!IsExceptionType(exceptionType))
             throw new ArgumentException($"The type {exceptionType.FullName} must inherit from System.Exception.", nameof(exceptionType));
 
-        bool isErrorResponseType = IsErrorResponseType(exceptionType, errorResponseType);
+        bool isErrorResponseType = IsErrorResultType(exceptionType, errorResultType);
         if (!isErrorResponseType)
-            throw new ArgumentException($"The type {errorResponseType.FullName} must implement IErrorResult<{exceptionType.Name}>.", nameof(errorResponseType));
+            throw new ArgumentException($"The type {errorResultType.FullName} must implement IHttpErrorResult<{exceptionType.Name}>.", nameof(errorResultType));
 
-        types.Add(exceptionType, errorResponseType);
+        types.Add(exceptionType, errorResultType);
     }
 
     private static bool IsExceptionType(Type exceptionType)
     {
-        return exceptionType.IsSubclassOf(typeof(Exception));
+        return exceptionType.IsSubclassOf(typeof(Exception)) || exceptionType == typeof(Exception);
     }
 
-    private static bool IsErrorResponseType(Type exceptionType, Type errorResponseType)
+    private static bool IsErrorResultType(Type exceptionType, Type errorResultType)
     {
-        Type interfaceType = typeof(IErrorResult<>).MakeGenericType(exceptionType);
-        return interfaceType.IsAssignableFrom(errorResponseType);
+        Type interfaceType = typeof(IHttpErrorResult<>).MakeGenericType(exceptionType);
+        return interfaceType.IsAssignableFrom(errorResultType);
     }
 
     public Type GetErrorResultType<T>(T exception)

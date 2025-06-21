@@ -3,6 +3,7 @@ using DiscountDemo.Adapter.EfDataAccess;
 using DiscountDemo.Application.CalculateDiscount;
 using DiscountDemo.Port.DataAccess;
 using DiscountDemo.Presentation.Controllers;
+using DiscountDemo.Presentation.ErrorResults;
 using DiscountDemo.Presentation.Infrastructure.ErrorHandling;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
@@ -38,7 +39,11 @@ public class Program
 
         builder.Services.AddTransient<ICustomerRepository, CustomerRepository>();
 
-        builder.Services.AddExceptionHandlers(presentationAssembly);
+        builder.Services.AddErrorResults(options =>
+        {
+            options.Assembly = presentationAssembly;
+            options.DefaultErrorResult = new GeneralHttpErrorResult();
+        });
 
         var app = builder.Build();
 

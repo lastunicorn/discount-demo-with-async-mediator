@@ -5,9 +5,9 @@ namespace DiscountDemo.Presentation.Infrastructure.ErrorHandling;
 internal class ExceptionHandlingMiddleware
 {
     private readonly RequestDelegate next;
-    private readonly ExceptionHandler exceptionHandler;
+    private readonly ExceptionsHandler exceptionHandler;
 
-    public ExceptionHandlingMiddleware(RequestDelegate next, ExceptionHandler exceptionHandler)
+    public ExceptionHandlingMiddleware(RequestDelegate next, ExceptionsHandler exceptionHandler)
     {
         this.next = next ?? throw new ArgumentNullException(nameof(next));
         this.exceptionHandler = exceptionHandler ?? throw new ArgumentNullException(nameof(exceptionHandler));

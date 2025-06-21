@@ -1,19 +1,20 @@
 ﻿using DiscountDemo.Application.Errors;
-using DiscountDemo.Presentation.Infrastructure.ErrorHandling.Json;
+using DiscountDemo.Presentation.Infrastructure.ErrorHandling;
+using DiscountDemo.Presentation.Models;
 using Microsoft.AspNetCore.Http;
 
 namespace DiscountDemo.Presentation.ErrorResults;
 
-internal class InvalidPriceErrorResult : JsonErrorResult<InvalidPriceException>
+internal class InvalidPriceErrorResult : JsonHttpErrorResult<InvalidPriceException, ErrorResponseDto>
 {
     protected override int StatusCode => StatusCodes.Status400BadRequest;
 
-    protected override ErrorBodyDto BuildBody(InvalidPriceException exception)
+    protected override ErrorResponseDto BuildBody(InvalidPriceException exception)
     {
-        return new ErrorBodyDto
+        return new ErrorResponseDto
         {
             ErrorCode = exception.ErrorCode,
-            Message = exception.Message
+            ErrorMessage = exception.Message
         };
     }
 }

@@ -1,19 +1,20 @@
 ﻿using DiscountDemo.Domain;
-using DiscountDemo.Presentation.Infrastructure.ErrorHandling.Json;
+using DiscountDemo.Presentation.Infrastructure.ErrorHandling;
+using DiscountDemo.Presentation.Models;
 using Microsoft.AspNetCore.Http;
 
 namespace DiscountDemo.Presentation.ErrorResults;
 
-internal class InvalidCustomerTypeErrorResult : JsonErrorResult<InvalidCustomerTypeException>
+internal class InvalidCustomerTypeErrorResult : JsonHttpErrorResult<InvalidCustomerTypeException, ErrorResponseDto>
 {
     protected override int StatusCode => StatusCodes.Status422UnprocessableEntity;
 
-    protected override ErrorBodyDto BuildBody(InvalidCustomerTypeException exception)
+    protected override ErrorResponseDto BuildBody(InvalidCustomerTypeException exception)
     {
-        return new ErrorBodyDto
+        return new ErrorResponseDto
         {
             ErrorCode = exception.ErrorCode,
-            Message = exception.Message
+            ErrorMessage = exception.Message
         };
     }
 }
